@@ -3,230 +3,226 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#101114">
   <title>LOOP — Sarimoko DJ Workstation</title>
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <header class="topbar">
-    <div class="brand">
-      <span class="brand-mark">◉</span>
-      <span>LOOP</span>
-      <small>BY SARIMOKO</small>
+<header class="topbar">
+  <a class="brand" href="#">
+    <span class="brand-icon">◉</span>
+    <span>LOOP</span>
+    <small>BY SARIMOKO</small>
+  </a>
+  <div class="top-status"><i></i> LOCAL AUDIO ENGINE</div>
+  <button id="settingsButton" class="icon-button" title="Audio settings">⚙</button>
+</header>
+
+<main class="workstation">
+  <section class="intro">
+    <div>
+      <div class="eyebrow">DIGITAL DJ WORKSTATION</div>
+      <h1>Mix something <span>different.</span></h1>
+      <p>Two decks. Your music. Your mix.</p>
     </div>
-    <div class="top-status">
-      <span class="status-dot"></span>
-      SYSTEM READY
+    <label class="upload-button">
+      + IMPORT MUSIC
+      <input id="fileInput" type="file" accept="audio/*" multiple hidden>
+    </label>
+  </section>
+
+  <section class="deck-grid">
+    <article class="deck" id="deckCardA">
+      <div class="deck-header">
+        <div><span class="deck-letter">A</span><span class="deck-name">DECK A</span></div>
+        <span class="status" id="statusA">EMPTY</span>
+      </div>
+      <div class="track-info">
+        <div>
+          <h2 id="titleA">No track loaded</h2>
+          <p id="detailA">Import music or select a library track</p>
+        </div>
+        <span class="time" id="timeA">00:00</span>
+      </div>
+      <div class="disc-area">
+        <div class="vinyl" id="vinylA"><div class="vinyl-center">A</div></div>
+        <div class="visualizer-wrap">
+          <canvas id="visualA" class="visualizer"></canvas>
+          <div class="wave-label">LIVE AUDIO SPECTRUM</div>
+        </div>
+      </div>
+      <canvas id="timelineA" class="timeline" aria-label="Deck A playback timeline"></canvas>
+      <div class="timeline-labels">
+        <span id="elapsedA">00:00</span>
+        <span id="durationA">00:00</span>
+      </div>
+      <div class="transport">
+        <button id="cueA">CUE</button>
+        <button id="backA">−10</button>
+        <button class="play-button" id="playA">▶</button>
+        <button id="stopA">■</button>
+        <button id="forwardA">+10</button>
+      </div>
+      <div class="deck-sliders">
+        <label>PITCH <output id="pitchReadA">0%</output>
+          <input id="pitchA" type="range" min="-8" max="8" value="0" step="0.1">
+        </label>
+        <label>CHANNEL LEVEL <output id="levelReadA">80%</output>
+          <input id="levelA" type="range" min="0" max="100" value="80">
+        </label>
+      </div>
+      <div class="eq">
+        <label>BASS <output id="bassReadA">0 dB</output>
+          <input id="bassA" type="range" min="-12" max="12" value="0">
+        </label>
+        <label>MID <output id="midReadA">0 dB</output>
+          <input id="midA" type="range" min="-12" max="12" value="0">
+        </label>
+        <label>TREBLE <output id="trebleReadA">0 dB</output>
+          <input id="trebleA" type="range" min="-12" max="12" value="0">
+        </label>
+      </div>
+      <div class="deck-footer">
+        <button class="subtle-button" id="loadQueueA">LOAD SELECTED QUEUE TRACK</button>
+        <button class="subtle-button" id="ejectA">EJECT</button>
+      </div>
+      <audio id="audioA" preload="metadata"></audio>
+    </article>
+
+    <article class="deck" id="deckCardB">
+      <div class="deck-header">
+        <div><span class="deck-letter">B</span><span class="deck-name">DECK B</span></div>
+        <span class="status" id="statusB">EMPTY</span>
+      </div>
+      <div class="track-info">
+        <div>
+          <h2 id="titleB">No track loaded</h2>
+          <p id="detailB">Import music or select a library track</p>
+        </div>
+        <span class="time" id="timeB">00:00</span>
+      </div>
+      <div class="disc-area">
+        <div class="vinyl" id="vinylB"><div class="vinyl-center">B</div></div>
+        <div class="visualizer-wrap">
+          <canvas id="visualB" class="visualizer"></canvas>
+          <div class="wave-label">LIVE AUDIO SPECTRUM</div>
+        </div>
+      </div>
+      <canvas id="timelineB" class="timeline" aria-label="Deck B playback timeline"></canvas>
+      <div class="timeline-labels">
+        <span id="elapsedB">00:00</span>
+        <span id="durationB">00:00</span>
+      </div>
+      <div class="transport">
+        <button id="cueB">CUE</button>
+        <button id="backB">−10</button>
+        <button class="play-button" id="playB">▶</button>
+        <button id="stopB">■</button>
+        <button id="forwardB">+10</button>
+      </div>
+      <div class="deck-sliders">
+        <label>PITCH <output id="pitchReadB">0%</output>
+          <input id="pitchB" type="range" min="-8" max="8" value="0" step="0.1">
+        </label>
+        <label>CHANNEL LEVEL <output id="levelReadB">80%</output>
+          <input id="levelB" type="range" min="0" max="100" value="80">
+        </label>
+      </div>
+      <div class="eq">
+        <label>BASS <output id="bassReadB">0 dB</output>
+          <input id="bassB" type="range" min="-12" max="12" value="0">
+        </label>
+        <label>MID <output id="midReadB">0 dB</output>
+          <input id="midB" type="range" min="-12" max="12" value="0">
+        </label>
+        <label>TREBLE <output id="trebleReadB">0 dB</output>
+          <input id="trebleB" type="range" min="-12" max="12" value="0">
+        </label>
+      </div>
+      <div class="deck-footer">
+        <button class="subtle-button" id="loadQueueB">LOAD SELECTED QUEUE TRACK</button>
+        <button class="subtle-button" id="ejectB">EJECT</button>
+      </div>
+      <audio id="audioB" preload="metadata"></audio>
+    </article>
+  </section>
+
+  <section class="mixer panel">
+    <div class="section-heading">
+      <h2>MASTER MIXER</h2><span class="live-tag">● LIVE</span>
     </div>
-    <button class="icon-button" id="settingsButton" title="Settings">⚙</button>
-  </header>
-
-  <main class="workstation">
-    <section class="deck-row">
-
-      <article class="deck" id="deckA">
-        <div class="deck-heading">
-          <span class="deck-label">DECK A</span>
-          <span class="deck-state" id="stateA">EMPTY</span>
-        </div>
-
-        <div class="track-search">
-          <input id="searchA" placeholder="Paste YouTube URL or search tracks">
-          <button id="loadA">LOAD</button>
-        </div>
-
-        <div class="track-info">
-          <div>
-            <h2 id="titleA">No track loaded</h2>
-            <p id="artistA">Deck A · Waiting for audio</p>
-          </div>
-          <span class="track-time" id="timeA">00:00</span>
-        </div>
-
-        <div class="deck-visual">
-          <div class="vinyl" id="vinylA">
-            <div class="vinyl-label">A</div>
-          </div>
-          <canvas class="waveform" id="waveA"></canvas>
-        </div>
-
-        <div class="transport">
-          <button id="cueA">CUE</button>
-          <button id="backA">−10</button>
-          <button class="play-button" id="playA">▶</button>
-          <button id="stopA">■</button>
-          <button id="forwardA">+10</button>
-        </div>
-
-        <div class="deck-controls">
-          <label>
-            PITCH
-            <input type="range" id="pitchA" min="-8" max="8" value="0">
-            <span id="pitchValueA">0%</span>
-          </label>
-          <label>
-            CHANNEL LEVEL
-            <input type="range" id="gainA" min="0" max="100" value="80">
-          </label>
-        </div>
-
-        <div class="youtube-player" id="playerA"></div>
-      </article>
-
-      <article class="deck" id="deckB">
-        <div class="deck-heading">
-          <span class="deck-label">DECK B</span>
-          <span class="deck-state" id="stateB">EMPTY</span>
-        </div>
-
-        <div class="track-search">
-          <input id="searchB" placeholder="Paste YouTube URL or search tracks">
-          <button id="loadB">LOAD</button>
-        </div>
-
-        <div class="track-info">
-          <div>
-            <h2 id="titleB">No track loaded</h2>
-            <p id="artistB">Deck B · Waiting for audio</p>
-          </div>
-          <span class="track-time" id="timeB">00:00</span>
-        </div>
-
-        <div class="deck-visual">
-          <div class="vinyl" id="vinylB">
-            <div class="vinyl-label">B</div>
-          </div>
-          <canvas class="waveform" id="waveB"></canvas>
-        </div>
-
-        <div class="transport">
-          <button id="cueB">CUE</button>
-          <button id="backB">−10</button>
-          <button class="play-button" id="playB">▶</button>
-          <button id="stopB">■</button>
-          <button id="forwardB">+10</button>
-        </div>
-
-        <div class="deck-controls">
-          <label>
-            PITCH
-            <input type="range" id="pitchB" min="-8" max="8" value="0">
-            <span id="pitchValueB">0%</span>
-          </label>
-          <label>
-            CHANNEL LEVEL
-            <input type="range" id="gainB" min="0" max="100" value="80">
-          </label>
-        </div>
-
-        <div class="youtube-player" id="playerB"></div>
-      </article>
-    </section>
-
-    <section class="mixer">
-      <div class="mixer-heading">
-        <span>MASTER MIXER</span>
-        <span class="master-indicator">● LIVE MIX</span>
+    <div class="mixer-layout">
+      <div class="master-side">
+        <div class="meter"><div id="masterMeter"></div></div>
+        <label>MASTER VOLUME
+          <input id="master" type="range" min="0" max="100" value="90">
+        </label>
       </div>
-
-      <div class="mixer-columns">
-        <div class="channel">
-          <h3>CHANNEL A</h3>
-          <div class="knob-group">
-            <label>BASS<input type="range" min="-12" max="12" value="0" disabled></label>
-            <label>MID<input type="range" min="-12" max="12" value="0" disabled></label>
-            <label>HIGH<input type="range" min="-12" max="12" value="0" disabled></label>
-          </div>
-          <label class="fader-label">VOLUME
-            <input type="range" id="faderA" min="0" max="100" value="80">
-          </label>
-        </div>
-
-        <div class="master-channel">
-          <h3>MASTER</h3>
-          <div class="master-meter">
-            <div class="meter-fill" id="masterMeter"></div>
-          </div>
-          <label>MASTER LEVEL
-            <input type="range" id="master" min="0" max="100" value="90">
-          </label>
-        </div>
-
-        <div class="channel">
-          <h3>CHANNEL B</h3>
-          <div class="knob-group">
-            <label>BASS<input type="range" min="-12" max="12" value="0" disabled></label>
-            <label>MID<input type="range" min="-12" max="12" value="0" disabled></label>
-            <label>HIGH<input type="range" min="-12" max="12" value="0" disabled></label>
-          </div>
-          <label class="fader-label">VOLUME
-            <input type="range" id="faderB" min="0" max="100" value="80">
-          </label>
-        </div>
+      <div class="crossfader">
+        <div><span>DECK A</span><strong>CROSSFADER</strong><span>DECK B</span></div>
+        <input id="crossfader" type="range" min="0" max="100" value="50">
+        <div class="cross-hints"><span>A ONLY</span><span>BLEND</span><span>B ONLY</span></div>
       </div>
-
-      <div class="crossfader-section">
-        <div class="crossfader-labels">
-          <span>A</span>
-          <span>CROSSFADER</span>
-          <span>B</span>
-        </div>
-        <input type="range" id="crossfader" min="0" max="100" value="50">
-      </div>
-    </section>
-
-    <section class="fx-panel">
-      <div class="panel-heading">
-        <h2>PERFORMANCE FX</h2>
-        <span class="muted">INTERFACE PREVIEW</span>
-      </div>
-      <div class="fx-buttons">
-        <button disabled>FILTER</button>
-        <button disabled>ECHO</button>
-        <button disabled>REVERB</button>
-        <button disabled>FLANGER</button>
-      </div>
-      <p class="notice">
-        Effects, EQ, pitch and beat-loop controls are interface placeholders
-        for the YouTube playback version. They require an audio source that
-        permits Web Audio processing.
-      </p>
-    </section>
-
-    <section class="queue-panel">
-      <div class="panel-heading">
-        <h2>TRACK QUEUE</h2>
-        <span class="muted">YOUTUBE SEARCH</span>
-      </div>
-      <div id="queue" class="queue-list">
-        <p class="muted">Loaded tracks will appear here.</p>
-      </div>
-    </section>
-
-    <footer>
-      <span>SARIMOKO / LOOP</span>
-      <span>DUAL DECK AUDIO WORKSTATION</span>
-      <span>VERSION 1.0</span>
-    </footer>
-  </main>
-
-  <div class="modal hidden" id="settingsModal">
-    <div class="modal-content">
-      <button class="close-button" id="closeSettings">×</button>
-      <h2>Settings</h2>
-      <label>YouTube Data API v3 Key</label>
-      <input id="apiKey" type="password" placeholder="Enter API key for text search">
-      <p class="notice">
-        Direct YouTube URLs can load without an API key. Text searches
-        require a Google Cloud API key with YouTube Data API v3 enabled.
-        The key is held only in this browser session.
-      </p>
-      <button id="saveSettings">SAVE SETTINGS</button>
     </div>
-  </div>
+  </section>
 
-  <script src="app.js"></script>
-  <script src="https://www.youtube.com/iframe_api"></script>
+  <section class="panel effects">
+    <div class="section-heading"><h2>PERFORMANCE FX</h2><span class="muted">LOCAL AUDIO PROCESSING</span></div>
+    <div class="fx-grid">
+      <label>FILTER
+        <input id="filter" type="range" min="200" max="12000" value="12000">
+        <output id="filterRead">12 kHz</output>
+      </label>
+      <label>ECHO
+        <input id="echo" type="range" min="0" max="70" value="0">
+        <output id="echoRead">0%</output>
+      </label>
+      <label>REVERB
+        <input id="reverb" type="range" min="0" max="70" value="0">
+        <output id="reverbRead">0%</output>
+      </label>
+    </div>
+    <p class="hint">Effects are applied to both local audio decks. Start playback before adjusting them.</p>
+  </section>
+
+  <section class="panel library">
+    <div class="section-heading">
+      <div><h2>MUSIC LIBRARY</h2><span class="muted" id="libraryCount">0 TRACKS</span></div>
+      <label class="small-upload">+ ADD FILES<input id="libraryInput" type="file" accept="audio/*" multiple hidden></label>
+    </div>
+    <div id="libraryList" class="track-list">
+      <div class="empty-state">Your music library is empty. Import audio files to get started.</div>
+    </div>
+  </section>
+
+  <section class="panel playlist">
+    <div class="section-heading">
+      <div><h2>PLAYLIST / SET BUILDER</h2><span class="muted" id="queueCount">0 TRACKS</span></div>
+      <div class="playlist-actions">
+        <button id="saveSet">SAVE SET</button>
+        <button id="clearQueue" class="subtle-button">CLEAR</button>
+      </div>
+    </div>
+    <div class="queue-tools">
+      <span>Build a set by adding tracks from your library. Select a track to load it into a deck.</span>
+      <select id="savedSets"><option value="">LOAD SAVED SET…</option></select>
+      <button id="deleteSet" class="subtle-button">DELETE SET</button>
+    </div>
+    <div id="queueList" class="track-list">
+      <div class="empty-state">Your set is empty. Add tracks from the music library.</div>
+    </div>
+  </section>
+
+  <footer>
+    <span>SARIMOKO / LOOP</span>
+    <span>LOCAL AUDIO WORKSTATION</span>
+    <span>VERSION 2.0</span>
+  </footer>
+</main>
+
+<div class="toast" id="toast"></div>
+
+<script src="app.js"></script>
 </body>
 </html>
